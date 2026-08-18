@@ -20,10 +20,5 @@
 	<!-- Allow reading from arbitrary absolute paths (external drives, NAS, etc.) -->
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-only</key>
 	<true/>
-	<!-- Persist login cookies via flutter_secure_storage -->
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)com.sandybro.bulky</string>
-	</array>
 </dict>
 </plist>
