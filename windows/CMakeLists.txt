@@ -107,13 +107,9 @@ install(FILES "${AOT_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_DATA_DIR}"
   CONFIGURATIONS Profile;Release
   COMPONENT Runtime)
 
-# Bundled ffmpeg and Insta360 stitch helper (copied when present).
+# Bundled ffmpeg (copied when present; otherwise the app downloads it).
 set(BULKY_FFMPEG "${CMAKE_CURRENT_SOURCE_DIR}/runner/resources/ffmpeg.exe")
 if(EXISTS "${BULKY_FFMPEG}")
   install(FILES "${BULKY_FFMPEG}" DESTINATION "${CMAKE_INSTALL_PREFIX}"
     COMPONENT Runtime)
 endif()
-
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../native/stitcher" "${CMAKE_BINARY_DIR}/stitcher")
-install(TARGETS bulky_stitcher RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}"
-  COMPONENT Runtime)
