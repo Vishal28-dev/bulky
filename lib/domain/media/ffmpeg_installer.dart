@@ -177,6 +177,17 @@ class FfmpegInstaller {
       } catch (e) {
         lastError = e;
         appLog.warning('ffmpeg download attempt $attempt failed: $e');
+        final fallback = _snapshotFallback(url);
+        if (fallback != null) {
+          try {
+            if (dest.existsSync()) await dest.delete();
+            await _download(fallback, dest, onProgress);
+            return;
+          } catch (fallbackError) {
+            lastError = fallbackError;
+            appLog.warning('ffmpeg snapshot fallback failed: $fallbackError');
+          }
+        }
         if (dest.existsSync()) {
           try {
             await dest.delete();
@@ -273,5 +284,11 @@ class FfmpegInstaller {
   static String _mb(int bytes) {
     final mb = bytes / (1024 * 1024);
     return '${mb.toStringAsFixed(0)} MB';
+  }
+
+  static Uri? _snapshotFallback(Uri url) {
+    final raw = url.toString();
+    if (!raw.contains('/release/')) return null;
+    return Uri.parse(raw.replaceFirst('/release/', '/snapshot/'));
   }
 }

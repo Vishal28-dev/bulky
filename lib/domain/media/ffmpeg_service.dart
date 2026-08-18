@@ -8,9 +8,11 @@ import '../../core/logger.dart';
 import 'insv_layout.dart';
 
 class FfmpegService {
-  FfmpegService({this.paths});
+  FfmpegService({this.paths, this.allowSystem = true});
 
   final AppPaths? paths;
+  /// When false, only the app-managed ffmpeg folder is used (install test).
+  final bool allowSystem;
   String? _ffmpeg;
   String? _ffprobe;
 
@@ -25,13 +27,18 @@ class FfmpegService {
     if (_ffmpeg != null) return _ffmpeg!;
     for (final candidate in [
       ..._managedCandidates('ffmpeg'),
-      ...await _bundledCandidates('ffmpeg'),
-      ..._pathCandidates('ffmpeg'),
+      if (allowSystem) ...await _bundledCandidates('ffmpeg'),
+      if (allowSystem) ..._pathCandidates('ffmpeg'),
     ]) {
       if (await File(candidate).exists()) {
         _ffmpeg = candidate;
         return candidate;
       }
+    }
+    if (!allowSystem) {
+      throw StateError(
+        'ffmpeg was not found. bulky downloads a full GPL build automatically on launch.',
+      );
     }
     final fromPath = await _which(binName('ffmpeg'));
     if (fromPath != null) {
@@ -54,8 +61,8 @@ class FfmpegService {
     }
     for (final candidate in [
       ..._managedCandidates('ffprobe'),
-      ...await _bundledCandidates('ffprobe'),
-      ..._pathCandidates('ffprobe'),
+      if (allowSystem) ...await _bundledCandidates('ffprobe'),
+      if (allowSystem) ..._pathCandidates('ffprobe'),
     ]) {
       if (await File(candidate).exists()) {
         _ffprobe = candidate;

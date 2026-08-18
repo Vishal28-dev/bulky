@@ -1,26 +1,21 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 
 class AppPaths {
-  AppPaths._(this.supportDir);
+  AppPaths(this.supportDir);
 
-  @visibleForTesting
-  factory AppPaths.test(Directory dir) => AppPaths._(dir);
+  factory AppPaths.test(Directory dir) => AppPaths(dir);
 
   final Directory supportDir;
 
-  static Future<AppPaths> load() async {
-    final dir = await getApplicationSupportDirectory();
-    final support = Directory(p.join(dir.path, 'bulky'));
+  static Future<AppPaths> create(Directory support) async {
     await support.create(recursive: true);
     await Directory(p.join(support.path, 'stitch-cache')).create(recursive: true);
     await Directory(p.join(support.path, 'prepare')).create(recursive: true);
     await Directory(p.join(support.path, 'logs')).create(recursive: true);
     await Directory(p.join(support.path, 'ffmpeg')).create(recursive: true);
-    return AppPaths._(support);
+    return AppPaths(support);
   }
 
   Directory get stitchCache => Directory(p.join(supportDir.path, 'stitch-cache'));

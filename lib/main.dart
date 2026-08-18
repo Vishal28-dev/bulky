@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'app/app.dart';
@@ -33,7 +35,8 @@ Future<void> main(List<String> args) async {
     },
   );
 
-  final paths = await AppPaths.load();
+  final support = await getApplicationSupportDirectory();
+  final paths = await AppPaths.create(Directory(p.join(support.path, 'bulky')));
   await LocalData.syncNukeHost(paths);
 
   // NukeAuthClient needs the support path for the persistent cookie jar.

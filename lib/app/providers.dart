@@ -400,7 +400,7 @@ class SessionController extends StateNotifier<SessionState> {
           title: 'Sign in with Google',
           windowWidth: 500,
           windowHeight: 700,
-          userDataFolderWindows: (await AppPaths.load()).supportDir.path,
+          userDataFolderWindows: ref.read(appPathsProvider).supportDir.path,
         ),
       );
       await webview.setWebviewWindowVisibility(false);
@@ -432,7 +432,7 @@ class SessionController extends StateNotifier<SessionState> {
             title: 'Sign in with Google',
             windowWidth: 500,
             windowHeight: 700,
-            userDataFolderWindows: (await AppPaths.load()).supportDir.path,
+            userDataFolderWindows: ref.read(appPathsProvider).supportDir.path,
           ),
         );
       }
