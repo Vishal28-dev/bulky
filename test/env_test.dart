@@ -25,10 +25,10 @@ OTHER=nope
   });
 
   test('no dart-define uses production', () {
-    expect(AppEnv.defaultNukeBaseUrl, 'https://api.framefloww.me');
+    expect(AppEnv.defaultNukeBaseUrl, 'https://api.nukemarketing.in');
     expect(
       AppEnv.resolveNukeBaseUrl(releaseMode: false),
-      'https://api.framefloww.me',
+      'https://api.nukemarketing.in',
     );
   });
 
@@ -39,7 +39,7 @@ OTHER=nope
         fromProcessEnv: 'http://localhost:8080',
         fromFile: 'http://127.0.0.1:8080',
       ),
-      'https://api.framefloww.me',
+      'https://api.nukemarketing.in',
     );
   });
 

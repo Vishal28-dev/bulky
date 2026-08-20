@@ -534,11 +534,10 @@ class SessionController extends StateNotifier<SessionState> {
 
     state = state.copyWith(loading: true, clearError: true);
     try {
-      // The live connect-url API ignores any local redirect and always sends
-      // the browser to nuke.framefloww.me/callback. Wait for the channel to
+      // The connect-url API may ignore this redirect. Wait for the channel to
       // show up on the account list instead of listening on 127.0.0.1.
       final connectUrl = await api.getYouTubeConnectUrl(
-        redirectUrl: 'https://nuke.framefloww.me/callback',
+        redirectUrl: '${AppConfig.nukeWebBaseUrl}/callback',
       );
       final launched = await launchUrl(
         Uri.parse(connectUrl.authUrl),

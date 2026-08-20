@@ -5,7 +5,7 @@
 	<!-- Sandbox off for distribution outside the Mac App Store -->
 	<key>com.apple.security.app-sandbox</key>
 	<false/>
-	<!-- Outbound HTTPS to api.framefloww.me and S3 -->
+	<!-- Outbound HTTPS to api.nukemarketing.in and S3 -->
 	<key>com.apple.security.network.client</key>
 	<true/>
 	<!-- Optional local server (unused for YouTube; website handles connect) -->

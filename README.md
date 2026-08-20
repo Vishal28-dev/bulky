@@ -1,12 +1,12 @@
 # bulky
 
-Windows and macOS app that queues a folder of videos and schedules them on YouTube through [Nuke](https://nuke.framefloww.me).
+Windows and macOS app that queues a folder of videos and schedules them on YouTube through [Nuke](https://app.nukemarketing.in).
 
-Release downloads always talk to **https://api.framefloww.me**. Debug can point at a local server with a `.env` file.
+Release downloads always talk to **https://api.nukemarketing.in**. Debug can point at a local server with a `.env` file.
 
 ## What you need
 
-1. A Nuke account at [nuke.framefloww.me](https://nuke.framefloww.me)
+1. A Nuke account at [app.nukemarketing.in](https://app.nukemarketing.in)
 2. An active plan (trial is fine)
 3. A connected YouTube channel on that same website
 

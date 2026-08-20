@@ -6,7 +6,7 @@ class AppConfig {
   static const String appName = 'bulky';
 
   // Live gateway. Debug may override via .env / NUKE_BASE_URL.
-  // Release always uses https://api.framefloww.me unless dart-define.
+  // Release always uses https://api.nukemarketing.in unless dart-define.
   static const String defaultNukeBaseUrl = AppEnv.defaultNukeBaseUrl;
   static String get nukeBaseUrl => AppEnv.nukeBaseUrl;
 
@@ -16,7 +16,7 @@ class AppConfig {
     if (api.contains('localhost') || api.contains('127.0.0.1')) {
       return 'http://localhost:5010';
     }
-    return 'https://nuke.framefloww.me';
+    return 'https://app.nukemarketing.in';
   }
 
   static String get nukeBillingUrl => '$nukeWebBaseUrl/settings/billing';

@@ -23,8 +23,8 @@ void main() {
   });
 
   test('Nuke base URL is configured', () {
-    expect(AppConfig.defaultNukeBaseUrl, 'https://api.framefloww.me');
-    expect(AppConfig.nukeBaseUrl, 'https://api.framefloww.me');
+    expect(AppConfig.defaultNukeBaseUrl, 'https://api.nukemarketing.in');
+    expect(AppConfig.nukeBaseUrl, 'https://api.nukemarketing.in');
     expect(AppConfig.authLoginPath, '/auth/login');
     expect(AppConfig.nukeApiPrefix, '/nuke/api');
   });

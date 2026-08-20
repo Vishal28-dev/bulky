@@ -8,7 +8,7 @@ import 'logger.dart';
 /// Live API. Debug can override via project-root `.env`.
 /// Release builds always use this unless `--dart-define=NUKE_BASE_URL=...`.
 class AppEnv {
-  static const String defaultNukeBaseUrl = 'https://api.framefloww.me';
+  static const String defaultNukeBaseUrl = 'https://api.nukemarketing.in';
 
   static Map<String, String> _file = {};
 
